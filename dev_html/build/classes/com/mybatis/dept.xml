@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" ?> <!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="deptMapper">
+		<select id="proc_emp_sal_update" parameterType="map" statementType="CALLABLE">
+	{call proc_emp_sal_update(#{empno, mode=IN, jdbcType=int},#{msg, mode=OUT, jdbcType=String})}
+	</select>
+	</mapper>

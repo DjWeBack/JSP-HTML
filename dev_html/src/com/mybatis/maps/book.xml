@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?> <!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bookMapper">
+	<select id="mybatisTest" resultType="java.util.Map" parameterType="java.util.Map">
+	select 1 as "val" from dual where '위백'=#{mem_name}	 
+
+	 </select>
+	<select id="currentTime" resultType="java.util.Map" parameterType="java.util.Map"> select to_char(sysdate,'YYYY-MM-DD') curday from dual </select>
+</mapper>
