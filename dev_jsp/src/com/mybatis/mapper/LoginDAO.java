@@ -1,6 +1,8 @@
 package com.mybatis.mapper;
 
 import java.io.Reader;
+import java.sql.CallableStatement;
+import java.sql.PreparedStatement;
 import java.util.List;
 import java.util.Map;
 
@@ -11,9 +13,11 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 
 public class LoginDAO {
-	Connection con = new Connection();
-	SqlSession			sqlSes = null;
+	
+	
 	public List<Map<String,Object>> getMemberList(Map<String,Object> pMap){
+		Connection con = new Connection();
+		SqlSession			sqlSes = null;
 		List<Map<String,Object>> memlist = null;
 		try {
 			sqlSes= con.sqlMapper.openSession();
@@ -25,5 +29,28 @@ public class LoginDAO {
 			System.out.println(e.toString());
 		}
 		return memlist;//처리된 이름을 리턴함. //근데 이게 맵타입일 필요가 있나..? 단순히 스트링으로 처리하는게 편하지 않을까?
+	}
+	public String addMember(Map<String, Object> pMap) {
+		String msg = "";
+		DBConnectionJSP dbcon = new DBConnectionJSP();
+		java.sql.Connection ccon = dbcon.getConnetion();
+		CallableStatement	 cstmt	 = null;
+		try {
+			cstmt = ccon.prepareCall("call proc_addmem(?,?,?,?)");
+			cstmt.setString(1, pMap.get("mem_id").toString());
+			cstmt.setString(2, pMap.get("mem_pw").toString());
+			cstmt.setString(3, pMap.get("mem_name").toString());
+			cstmt.registerOutParameter(4, java.sql.Types.VARCHAR);
+			cstmt.executeUpdate();
+			msg = cstmt.getString(4);
+			System.out.println(msg);
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e.toString());
+			System.out.println(pMap.get("mem_id").toString());
+			System.out.println(pMap.get("mem_pw").toString());
+			System.out.println(pMap.get("mem_name").toString());
+		}
+		return msg;
 	}
 }

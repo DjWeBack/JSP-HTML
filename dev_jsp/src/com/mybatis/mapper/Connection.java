@@ -20,10 +20,10 @@ public class Connection {
 			Reader reader = null;
 			reader= Resources.getResourceAsReader(resource);//DB연동 후 dept.xml을 참조.
 			sqlMapper = new SqlSessionFactoryBuilder().build(reader);
-			System.out.println("통과 - 정상 진행");
+			System.out.println("통과 - 정상 진행//Connection");
 				} catch (Exception e) {
 			System.out.println(e.toString());
-
+			
 		}
 
 

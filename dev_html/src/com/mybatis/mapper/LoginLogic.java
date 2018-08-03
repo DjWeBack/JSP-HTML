@@ -19,4 +19,13 @@ public class LoginLogic {
 		
 		
 	}
+	public void insertpross(String u_id, String u_pw, String u_name) {
+		userdata.put("mem_id", u_id);
+		userdata.put("mem_name", u_name);
+		userdata.put("mem_pw", u_pw);
+		ldao.addMember(userdata);
+		
+		
+		
+	}
 }

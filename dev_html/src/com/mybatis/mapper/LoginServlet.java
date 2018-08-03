@@ -35,8 +35,11 @@ public class LoginServlet extends HttpServlet{
 	public void doService(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		String u_id = req.getParameter("mem_id"); //웹에서 사용자가 입력한 ID값 
 		String u_pw = req.getParameter("mem_pw"); //웹에서 사용자가 입력한 PW값
+		String u_name= req.getParameter("a_mem_name");
+		String u_aid = req.getParameter("a_mem_id"); 
+		String u_apw = req.getParameter("a_mem_pw");
 		String command = req.getParameter("command"); //기능 버튼(로그인,회원가입,아이디찾기,PW찾기 등등.)
-		
+	
 		/*u_prof.put("mem_id", u_id);
 		u_prof.put("mem_pw", u_pw);*/
 
@@ -49,9 +52,17 @@ public class LoginServlet extends HttpServlet{
 			logger.info("로그인 성공!!!!");
 			req.getRequestDispatcher("/semiproject/loginsuccess.jsp").forward(req, res);	
 		}
+		else if("ok".equals(command)) {
+			logger.info("정보넘어옴 확인.");
+			logic.insertpross(u_aid, u_apw, u_name);
+			System.out.println("정보 넘어옴");
+			System.out.println("입력 ID : "+u_aid);
+			System.out.println("입력 PW : "+u_apw);
+			System.out.println("입력 name : "+u_name);
 		
-		/*else if() {}
-		else if() {}*/
+		req.getRequestDispatcher("/semiproject/searchWordView.jsp").forward(req, res);
 		
+
+		}
 	}
 }

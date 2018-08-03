@@ -28,7 +28,7 @@ public class GameDAO {
 	public List<GameVO> getGameList(String word){
 		List<GameVO> gameList = new ArrayList<GameVO>();
 		StringBuilder sql = new StringBuilder();//StringBuffer
-		sql.append("select g_no, g_name, g_img, g_com from gamelist WHERE g_name like "+"'"+word+"'"+"||'%'");
+		sql.append("select g_no, g_name, g_img, g_com from gamelist WHERE g_name like "+"'%'||"+"'"+word+"'"+"||'%'");
 		System.out.println("select g_no, g_name, g_img, g_com from gamelist WHERE g_name like "+"'"+word+"'"+"||'%'");
 		//DB연동은 오라클 서버에 접속하는 것이므로 예외처리 필수임.
 		try {

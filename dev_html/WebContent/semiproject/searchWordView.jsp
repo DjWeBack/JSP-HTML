@@ -4,13 +4,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<%@ include file="../include/commonUI.jsp" %>
-<script type="text/javascript"
-	src="../bootstrap-3.3.2-dist/js/bootstrap.js"></script>
-<link rel="stylesheet" type="text/css"
-	href="../bootstrap-3.3.2-dist/css/bootstrap.css">
-<link rel="stylesheet" type="text/css"
-	href="../bootstrap-3.3.2-dist/css/bootstrap-theme.css">
+<link rel="stylesheet" type="text/css" href="/dev_html/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="/dev_html/themes/icon.css">
+	<script type="text/javascript" src="/dev_html/js/jquery-1.12.0.js"></script>
+	<script type="text/javascript" src="/dev_html/js/jquery.easyui.min.js"></script> 
+
+<%-- <%@ include file="../include/commonUI.jsp" %> --%>
 <title>Weback의 게임검색</title>
 <style type="text/css">
 div#d_word {
@@ -83,10 +82,43 @@ div#d_detail {
 
 		
 	}
+	function addcan(){
+		$('#d_insert').window('close');
+		}
+	function addok(){
+		$("#f_insert").attr("method","post");
+		$("#f_insert").attr("action","/dev_html/login6.do");
+		$("#f_insert").submit();
+	}	
+	function insert(){
+		
+		$('#d_insert').window({
+	    width:350,
+	    height:250,
+	    modal:true
+	});
+	$("#d_insert").show();
+	$('#a_mem_id').textbox({
+		iconCls:'icon-man',
+		iconAlign:'left'
+	})
+	$('#a_mem_name').textbox({
+					iconCls:'icon-man',
+					iconAlign:'left'
+				})
+				$(function(){
+		   			 $('#a_mem_pw').passwordbox({
+		       		 prompt: 'Password',
+		       		iconCls:'icon-lock',
+		       		iconAlign:'left',
+		             showEye: true
+		    });
+		});
+	}
 </script>
 
 </head>
-<body background="./picture/webackprof.png">
+<body>
 	<script type="text/javascript">
 		//getDetail()
 		function Detail() {
@@ -94,7 +126,7 @@ div#d_detail {
 			$.ajax({
 
 						method : "POST",
-						url : "./searchwordActionDetail.jsp",
+						url : "/dev_html/semiproject/searchwordActionDetail.jsp",
 						data : word //리퀘스트(URL에서 받을 정보.)
 						//result는 URL에서 처리한 response로 보내진 값이 result
 						//위치잡아주기(div) -css(), attr()
@@ -142,7 +174,11 @@ div#d_detail {
 			$("#d_detail").html("");
 		}
 
-		$(document).ready(function() {$("#word").keyup(function() {	
+		$(document).ready(function() {
+			$("#d_insert").hide();
+			
+			
+			$("#word").keyup(function() {	
 			var word = "word="+ $("#word").val();
 			if ($("#word").val() == "") {
 				clearMethod();
@@ -151,7 +187,7 @@ div#d_detail {
 				}
 			$.ajax({
 				method : "POST",
-				url : "./searchWordAction.jsp",
+				url : "/dev_html/semiproject/searchWordAction.jsp",
 				data : word //리퀘스트(URL에서 받을 정보.)
 				,success : function(result) {//result는 URL에서 처리한 response로 보내진 값이 result
 																//위치잡아주기(div) -css(), attr()
@@ -188,8 +224,8 @@ for (var i = 0; i < tds.length; i++) {
 						});///////////////end of ready
 	</script>
 	<center>
-		<img src="./picture/Webacklogo.png" width="450" height="150"><br>
-		<font color="#FFFFFF">검색어 입력 : </font><input type="text" id="word" placeholder="예:ajax" /><br>
+		<img src="/dev_html/semiproject/picture/Webacklogo.png" width="450" height="150"><br>
+		<font color="#FFFFFF">검색어 입력 : </font><input type="text" id="word" placeholder="예:ajax"/><br>
 		<div id="d_word"></div>
 
 		<div id="d_detail"></div>
@@ -198,14 +234,14 @@ for (var i = 0; i < tds.length; i++) {
 	<form id="f_login">
 	<table>
 		<tr>
-			<td><font color="#FFFFFF">숫자놀이 :</font>
-				<font color="#FFFFFF">
+			<td>숫자놀이 :
+				
 				<div id="d_news">
 				
 					<input type="button" value="시작" style="color: black;" onclick="start()">
 					
 				</div>
-				</font>
+				
 				<div id="d_news2">
 					<input type="button" value="중지" onclick="stop()">
 				</div>
@@ -222,6 +258,7 @@ for (var i = 0; i < tds.length; i++) {
 						</td>
 						<td rowspan="4">
 							<a id="btn"href="javascript:login()" class="easyui-linkbutton" data-options="iconCls:'icon-ok'">login</a>
+							<a id="btn"href="javascript:insert()" class="easyui-linkbutton" data-options="iconCls:'icon-add'">add</a>
 						</td>
 					</tr>
 					<tr>
@@ -235,5 +272,33 @@ for (var i = 0; i < tds.length; i++) {
 		</tr>			
 	</table>
 	</form>
+	
+	<div id="d_insert">
+  <center>
+  <form id="f_insert">
+  <input type="hidden" name="command" id="command" value="ok">
+  <h3>회원가입</h3><br>
+  
+  <table>
+	<tr>
+		<td>아이디    :</td><td><input id="a_mem_id" name="a_mem_id" type="text" style="width:150px"></td>
+	</tr>
+    	<tr>
+    		<td>이름       :</td><td><input id="a_mem_name" name="a_mem_name" type="text" style="width:150px"></td>
+    	</tr>
+    	
+    	<tr>
+			<td>패스워드 : </td><td><input id="a_mem_pw" name="a_mem_pw" type="text" style="width:150px"></td>
+		</tr>
+		
+		<tr>
+			<td colspan="2" align="center"><a id="a_btn_ok"href="javascript:addok()" class="easyui-linkbutton" data-options="iconCls:'icon-ok'">OK</a>
+		<a id="a_btn_can"href="javascript:addcan()" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'">Cancel</a>
+			</td>
+		
+</table>
+</form>
+    </center>
+</div>
 </body>
 </html>

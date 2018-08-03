@@ -14,7 +14,6 @@ List<GameVO> gamelist = (List<GameVO>) request.getAttribute("gamelist");
         
         <tr>
 		<td class="pictTD" style="padding:10px;"><img src="<%=gamelist.get(i).getG_IMG()%>" width="250" height="200"></td>
-        <td style="width:250px;" class="pictTD"><%=gamelist.get(i).getG_COM()%></td>
         </tr>
         </table>
         <% } %>

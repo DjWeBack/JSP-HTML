@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<img src="/dev_html/semiproject/picture\weback.jpg" width="250" height="130">
+인증에 성공하였습니다.
 </body>
 </html>
