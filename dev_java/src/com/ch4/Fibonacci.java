@@ -32,7 +32,7 @@ public class Fibonacci {
 		int a1=1;
 		int a2=1;
 		int a3=0;
-		System.out.print(a1+" "+a2+" ");
+		/*System.out.print(a1+" "+a2+" ");*/
 		for(int i=0;i<19;i++) {
 			a3= a2+a1;
 			System.out.print(a3+" ");

@@ -8,13 +8,13 @@ import java.util.Map;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 
 
 public class LoginDAO {
-	
-	
+
 	public List<Map<String,Object>> getMemberList(Map<String,Object> pMap){
 		Connection con = new Connection();
 		SqlSession			sqlSes = null;

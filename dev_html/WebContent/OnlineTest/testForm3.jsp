@@ -4,6 +4,9 @@
 	String test1 = request.getParameter("htest1");
 	String test2 = request.getParameter("htest2");
 	out.print("1번 문제 답안 - "+test1+",2번 문제 답안 - "+test2);
+	Cookie c = new Cookie("test2",test2);
+	c.setMaxAge(60*60);
+	response.addCookie(c);
 %>
 <!DOCTYPE html>
 <html>
@@ -50,6 +53,5 @@
 <input type="button" value="이전문제" onClick="prev()">
 <input type="button" value="다음문제" onClick="next()">
 </form>
-
 </body>
 </html>

@@ -2,5 +2,5 @@
     pageEncoding="EUC-KR"%>
 	<link rel="stylesheet" type="text/css" href="/dev_jsp/themes/default/easyui.css">
 	<link rel="stylesheet" type="text/css" href="/dev_jsp/themes/icon.css">
-	<script type="text/javascript" src="/dev_jsp/js/jquery-1.12.0.js"></script>
+	<script type="text/javascript" src="/dev_jsp/Semantic-UI-CSS-master/Semantic-UI-CSS-master/jquery-1.12.0.js"></script>
 	<script type="text/javascript" src="/dev_jsp/js/jquery.easyui.min.js"></script>

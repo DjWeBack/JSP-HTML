@@ -27,6 +27,25 @@
 <servlet-name>boardServlet</servlet-name>
 <servlet-class>com.ch17.BoardServlet</servlet-class>
 </servlet>
+<servlet>
+<servlet-name>frontServelt</servlet-name>
+<servlet-class>com.mvc.FrontController</servlet-class>
+</servlet>
+
+<servlet-mapping>
+  <servlet-name>frontServelt</servlet-name>
+  <url-pattern>*.kos</url-pattern>
+   </servlet-mapping>
+<!-- MVC패턴 계층형 게시판 -->
+<servlet>
+<servlet-name>frontBoard</servlet-name>
+<servlet-class>com.mvc.board.BoardServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+  <servlet-name>frontBoard</servlet-name>
+  <url-pattern>*.bd</url-pattern>
+   </servlet-mapping>
+   <!-- MVC패턴 계층형 게시판 -->
 
   <servlet-mapping>
   <servlet-name>boardServlet</servlet-name>

@@ -2,7 +2,16 @@
 <!DOCTYPE mapper
  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="memberMapper">
+ <mapper namespace="memberMapper">
+ <!-- 우편번호 검색 쿼리 -->
+ <select id="zipcodeList" parameterType="java.lang.String" resultType="map">
+ select zipcode, address from zipcode_t
+ <if test="value!=null">
+ where dong like '%'||#{value}||'%'
+ </if>
+ </select>
+ 
+
  <select id="getMemberList" resultType="java.util.Map" parameterType="map">
  	select mem_name FROM member
  	<if test="mem_id!=null">
